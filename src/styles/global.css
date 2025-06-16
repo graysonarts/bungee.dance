@@ -1,0 +1,55 @@
+:root {
+  /* CSS HEX */
+  --pumpkin: #ff6700ff;
+  --antiflash-white: #ebebebff;
+  --silver: #c0c0c0ff;
+  --bice-blue: #3a6ea5ff;
+  --polynesian-blue: #004e98ff;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--antiflash-white);
+  color: var(--polynesian-blue);
+  font-family: "jaf-bernina-sans", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header {
+  font-family: agency-fb, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  font-size: 1.414rem;
+  line-height: 1.414;
+  max-width: 60ch;
+}
+
+a {
+  color: var(--polynesian-blue);
+  text-transform: uppercase;
+}
+
+a:hover {
+  color: var(--pumpkin);
+}
+
+.bodyfont {
+  font-family: "jaf-bernina-sans", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}

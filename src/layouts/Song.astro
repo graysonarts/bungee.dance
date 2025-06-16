@@ -1,0 +1,25 @@
+---
+import Layout from './Layout.astro';
+import Spotify from '../components/Spotify.astro';
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout>
+	<h1>{frontmatter.title}</h1>
+	<h2 class="bodyfont">by {frontmatter.artist}</h2>
+	<Spotify trackUrl={frontmatter.spotify} />
+	<div class="choreography">
+		<slot />
+	</div>
+</Layout>
+
+<style>
+	h1 {
+		font-size: calc(1.414rem * 1.414);
+	}
+
+	h2 {
+		font-size: calc(1rem);
+	}
+</style>

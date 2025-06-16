@@ -1,0 +1,24 @@
+---
+const { trackUrl } = Astro.props;
+---
+
+<script define:vars={{ trackUrl }}>
+	window.onSpotifyIframeApiReady = (IFrameAPI) => {
+		const element = document.getElementById("spotify-embed");
+		const options = {
+			uri: trackUrl,
+			height: '200',
+			width: "60%"
+		};
+		const callback = (EmbedController) => {};
+		IFrameAPI.createController(element, options, callback);
+	};
+</script>
+<div id="spotify-embed"></div>
+
+<style>
+	#spotify-embed {
+		width: 100%;
+		height: 352px;
+	}
+</style>
