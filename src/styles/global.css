@@ -42,6 +42,7 @@ p {
 a {
   color: var(--polynesian-blue);
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 a:hover {
