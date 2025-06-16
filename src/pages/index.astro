@@ -1,35 +1,43 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 
 const fitnessSongs = Object.values(
-	import.meta.glob('./songs/fitness/*.md', { eager: true })
+  import.meta.glob("./songs/fitness/*.md", { eager: true })
 );
-
 ---
 
 <Layout>
-	<p>bungee.dance is a repository of choreography that <a href="https://graysonarts.com/">Grayson</a> uses in his bungee fitness classes. It's mostly a reference for his students at this time, but will be expanding to have other stuff too.</p>
-	<h2>Fitness Songs</h2>
-	<ul>
-		{fitnessSongs.map((song: any) => (
-			<li>
-				<a href={song.url}>{song.frontmatter.title}</a> by {song.frontmatter.artist}
-			</li>
-		))}
-	</ul>
+  <p>
+    bungee.help is a repository of choreography that <a
+      rel="author"
+      href="https://graysonarts.com/">Grayson</a
+    > uses in his bungee fitness classes. It's mostly a reference for his students
+    at this time, but will be expanding to have other stuff too.
+  </p>
+  <h2>Fitness Songs</h2>
+  <ul>
+    {
+      fitnessSongs.map((song: any) => (
+        <li>
+          <a href={song.url}>{song.frontmatter.title}</a> by{" "}
+          {song.frontmatter.artist}
+        </li>
+      ))
+    }
+  </ul>
 </Layout>
 
 <style>
-	ul {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		display: flex;
-		flex-direction: column;
-		gap: 1.414rem;
-	}
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.414rem;
+  }
 
-	ul li {
-		text-align: left;
-	}
+  ul li {
+    text-align: left;
+  }
 </style>
