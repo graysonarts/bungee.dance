@@ -1,0 +1,50 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <p>
+    Here are all the bungee fitness and dance studios I have found organized by
+    city. If you own a studio and want to be added to the list, DM me on <a
+      href="https://www.instagram.com/_graysonarts_/">Instagram</a
+    >.
+  </p>
+  <ul class="cities">
+    <li>
+      <h2>Seattle</h2>
+      <ul class="studios">
+        <li>
+          <a href="https://www.newmoonmovementarts.com/classes/#BungeeFitness"
+            >New Moon Movement Arts</a
+          >
+        </li>
+      </ul>
+    </li>
+  </ul>
+</Layout>
+
+<style>
+  .cities {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.414rem;
+  }
+
+  .cities h2 {
+    font-size: calc(1.414rem * 1.414 * 1.414);
+    margin: 0;
+    padding: 0;
+  }
+
+  .studios {
+    list-style: none;
+    padding: 0;
+    margin: 0 calc(1.414rem * 1.414);
+    display: flex;
+    flex-direction: column;
+    gap: 1.414rem;
+  }
+</style>
