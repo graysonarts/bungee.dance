@@ -1,0 +1,40 @@
+---
+import "../../styles/global.css";
+const { title } = Astro.props;
+---
+
+<nav class="breadcrumb">
+  <div class="breadcrumb-nav">
+    <a href="/reference" class="breadcrumb-link">Songs</a>
+    <span class="breadcrumb-separator">→</span>
+    <span>{title}</span>
+  </div>
+</nav>
+
+<style>
+  .breadcrumb {
+    padding: 2rem 0 1rem;
+  }
+
+  .breadcrumb-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--neutral-500);
+  }
+
+  .breadcrumb-link {
+    color: var(--neutral-500);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .breadcrumb-link:hover {
+    color: var(--accent);
+  }
+
+  .breadcrumb-separator {
+    color: var(--neutral-300);
+  }
+</style>

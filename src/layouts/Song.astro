@@ -1,25 +1,146 @@
 ---
-import Layout from './Layout.astro';
-import Spotify from '../components/Spotify.astro';
-
+import Layout from "./Layout.astro";
+import Spotify from "../components/Spotify.astro";
+import Breadcrumb from "../components/songs/Breadcrumb.astro";
 const { frontmatter } = Astro.props;
 ---
 
 <Layout>
-	<h1>{frontmatter.title}</h1>
-	<h2 class="bodyfont">by {frontmatter.artist}</h2>
-	<Spotify trackUrl={frontmatter.spotify} />
-	<div class="choreography">
-		<slot />
-	</div>
+  <Breadcrumb title={frontmatter.title} />
+  <section class="song-header">
+    <Spotify trackUrl={frontmatter.spotify} />
+
+    <h1 class="song-title">{frontmatter.title}</h1>
+    <p class="song-artist">by {frontmatter.artist}</p>
+
+    <div class="song-meta">
+      <div class="meta-item">
+        <span class="meta-label">Duration</span>
+        <span class="meta-value">{frontmatter.duration}</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Point</span>
+        <span class="meta-value">Front</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Status</span>
+        <span class="meta-value">{frontmatter.status}</span>
+      </div>
+    </div>
+
+    <div class="song-tags">
+      {frontmatter.tags?.map((tag: string) => <span class="tag">{tag}</span>)}
+    </div>
+  </section>
+  <section class="choreography-section">
+    <h2 class="section-title">Choreography</h2>
+    <slot />
+  </section>
 </Layout>
 
 <style>
-	h1 {
-		font-size: calc(1.414rem * 1.414);
-	}
+  .song-header {
+    padding: 2rem 0 4rem;
+    text-align: center;
+  }
 
-	h2 {
-		font-size: calc(1rem);
-	}
+  .song-title {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--neutral-900);
+    margin-bottom: 1rem;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .song-artist {
+    font-size: 1.25rem;
+    color: var(--neutral-500);
+    margin-bottom: 2rem;
+    font-weight: 400;
+  }
+
+  .song-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .meta-label {
+    font-size: 0.875rem;
+    color: var(--neutral-500);
+    font-weight: 500;
+  }
+
+  .meta-value {
+    font-size: 0.95rem;
+    color: var(--neutral-700);
+    font-weight: 500;
+  }
+
+  .song-tags {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    background: var(--neutral-200);
+    color: var(--neutral-600);
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .tag.fitness {
+    background: var(--accent);
+    color: var(--white);
+  }
+
+  .tag.complete {
+    background: #059669;
+    color: var(--white);
+  }
+
+  .tag.front {
+    background: #dc2626;
+    color: var(--white);
+  }
+
+  .choreography-section {
+    padding: 4rem 0 6rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--neutral-900);
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .song-title {
+      font-size: 2rem;
+    }
+
+    .song-artist {
+      font-size: 1.125rem;
+    }
+
+    .song-meta {
+      gap: 1rem;
+    }
+  }
 </style>

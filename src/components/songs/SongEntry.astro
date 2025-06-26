@@ -20,6 +20,18 @@ const { song } = Astro.props;
           type: song.frontmatter.category,
         }}
       />
+      <SongTag
+        tag={{
+          label: song.frontmatter.status,
+          type: song.frontmatter.status,
+        }}
+      />
+      <SongTag
+        tag={{
+          label: song.frontmatter.point,
+          type: song.frontmatter.point,
+        }}
+      />
       {
         song.frontmatter.tags?.map((tag: any) => (
           <SongTag tag={{ label: tag, type: tag }} />
