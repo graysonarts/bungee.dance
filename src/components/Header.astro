@@ -1,16 +1,23 @@
 ---
 import "../styles/global.css";
 import { MusicIcon, SchoolIcon } from "@lucide/astro";
+const { pathname } = Astro.url;
 ---
 
 <header class="header">
   <div class="nav-container">
     <h1 class="logo">bungee.help</h1>
     <nav class="main-nav">
-      <a href="/reference" class="nav-link"
+      <a
+        href="/reference"
+        class="nav-link"
+        aria-current={pathname.slice(1) === "reference" ? "page" : "false"}
         ><MusicIcon class="nav-icon" />songs</a
       >
-      <a href="/studios" class="nav-link"
+      <a
+        href="/studios"
+        class="nav-link"
+        aria-current={pathname.slice(1) === "studios" ? "page" : "false"}
         ><SchoolIcon class="nav-icon" />studios</a
       >
     </nav>
@@ -55,6 +62,11 @@ import { MusicIcon, SchoolIcon } from "@lucide/astro";
 
   .nav-link:hover {
     color: var(--accent);
+  }
+
+  .nav-link[aria-current="page"] {
+    color: var(--accent);
+    font-weight: 600;
   }
 
   .nav-icon {

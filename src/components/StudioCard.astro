@@ -1,0 +1,178 @@
+---
+import "../styles/global.css";
+import StudioTag from "./StudioTag.astro";
+import {
+  ClockIcon,
+  UsersIcon,
+  MapPinIcon,
+  GraduationCapIcon,
+  SquareArrowOutUpRightIcon,
+  InfoIcon,
+} from "@lucide/astro";
+const { studio } = Astro.props;
+
+const tagMap = new Map([
+  ["MultipleClassTimes", { Icon: ClockIcon, label: "Multiple class times" }],
+  ["AllFitnessLevels", { Icon: UsersIcon, label: "All fitness levels" }],
+  [
+    "CertifiedInstructor",
+    { Icon: GraduationCapIcon, label: "Certified instructor" },
+  ],
+  ["SeattleArea", { Icon: MapPinIcon, label: "Seattle area" }],
+]);
+---
+
+<div class="studio-card">
+  <div class="studio-header">
+    <div>
+      <h2 class="studio-name">{studio.name}</h2>
+      <p class="studio-location">{studio.location}</p>
+    </div>
+    {studio.featured && <span class="studio-status featured">Featured</span>}
+  </div>
+
+  <div class="studio-description" set:html={studio.description} />
+
+  <div class="studio-details">
+    {
+      studio.tags.map((tag: any) => {
+        const { Icon, label } = tagMap.get(tag.label) as {
+          Icon: any;
+          label: string;
+        };
+        return (
+          <StudioTag label={label}>
+            <Icon class="detail-icon" />
+          </StudioTag>
+        );
+      })
+    }
+  </div>
+
+  <div class="studio-actions">
+    <a
+      href="https://www.newmoonmovementarts.com/classes/#BungeeFitness"
+      class="action-button primary"
+      target="_blank"
+    >
+      <SquareArrowOutUpRightIcon size={16} />
+      View Classes
+    </a>
+    <a
+      href="https://www.newmoonmovementarts.com"
+      class="action-button secondary"
+      target="_blank"
+    >
+      <InfoIcon size={16} />
+      Studio Info
+    </a>
+  </div>
+</div>
+
+<style>
+  .studio-card {
+    border: 1px solid var(--neutral-200);
+    border-radius: 8px;
+    padding: 3rem;
+    background: var(--white);
+    transition: all 0.3s ease;
+  }
+
+  .studio-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+  }
+
+  .studio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+
+  .studio-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--neutral-900);
+    margin-bottom: 0.5rem;
+  }
+
+  .studio-location {
+    color: var(--neutral-500);
+    font-size: 0.95rem;
+  }
+
+  .studio-status {
+    background: var(--neutral-100);
+    color: var(--neutral-600);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .studio-status.featured {
+    background: var(--accent);
+    color: var(--white);
+  }
+
+  .studio-description {
+    color: var(--neutral-600);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .studio-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .detail-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--accent);
+    stroke-width: 1.5;
+  }
+
+  .studio-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .action-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+  }
+
+  .action-button.primary {
+    background: var(--accent);
+    color: var(--white);
+  }
+
+  .action-button.primary:hover {
+    background: #065f46;
+    transform: translateY(-1px);
+  }
+
+  .action-button.secondary {
+    border: 1px solid var(--neutral-300);
+    color: var(--neutral-700);
+    background: var(--white);
+  }
+
+  .action-button.secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+</style>

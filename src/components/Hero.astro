@@ -1,13 +1,12 @@
 ---
 import "../styles/global.css";
+
+const { title, subtitle } = Astro.props;
 ---
 
 <section class="hero">
-  <h2 class="hero-title">Choreography Repository</h2>
-  <p class="hero-subtitle">
-    A curated collection of choreography for bungee fitness classes. Designed as
-    a reference for students and the growing bungee fitness community.
-  </p>
+  <h2 class="hero-title">{title}</h2>
+  <p class="hero-subtitle">{subtitle}</p>
 </section>
 
 <style>

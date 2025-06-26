@@ -1,50 +1,150 @@
 ---
+import Hero from "../components/Hero.astro";
 import Layout from "../layouts/Layout.astro";
+import StudioCard from "../components/StudioCard.astro";
+
+const studios = Object.values(
+  import.meta.glob("./studios/*.md", { eager: true })
+).map((studio: any) => {
+  console.log(studio);
+  const frontmatter = studio.frontmatter;
+  const description = studio.rawContent;
+
+  return {
+    ...frontmatter,
+    tags: frontmatter.tags.map((tag: string) => {
+      // TODO: Match against a list of tags with icons
+      return {
+        label: tag,
+      };
+    }),
+    description,
+  };
+});
 ---
 
 <Layout>
-  <p>
-    Here are all the bungee fitness and dance studios I have found organized by
-    city. If you own a studio and want to be added to the list, DM me on <a
-      href="https://www.instagram.com/_graysonarts_/">Instagram</a
-    >.
-  </p>
-  <ul class="cities">
-    <li>
-      <h2>Seattle</h2>
-      <ul class="studios">
-        <li>
-          <a href="https://www.newmoonmovementarts.com/classes/#BungeeFitness"
-            >New Moon Movement Arts</a
-          >
-        </li>
-      </ul>
-    </li>
-  </ul>
+  <Hero
+    title="Bungee Studios"
+    subtitle="Find bungee classes and studios where you can experience this exciting, low-impact workout."
+  />
+  <div class="studios-section">
+    <div class="studios-grid">
+      {studios.map((studio) => <StudioCard studio={studio} />)}
+      <section class="coming-soon-section">
+        <h2 class="coming-soon-title">More Studios Coming Soon</h2>
+        <p class="coming-soon-text">
+          We're working to expand our directory of bungee fitness studios. Do
+          you own a studio? Reach out on <a
+            href="https://www.instagram.com/_graysonarts_/">Instagram</a
+          >.
+        </p>
+        <!-- <form class="contact-form">
+          <input
+            type="email"
+            class="form-input"
+            placeholder="Enter your email"
+            required
+          />
+          <button type="submit" class="form-button">Notify Me</button>
+        </form> -->
+      </section>
+    </div>
+  </div>
 </Layout>
 
 <style>
-  .cities {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1.414rem;
+  .studios-section {
+    padding: 4rem 0 6rem;
   }
 
-  .cities h2 {
-    font-size: calc(1.414rem * 1.414 * 1.414);
-    margin: 0;
-    padding: 0;
+  .studios-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
   }
 
-  .studios {
-    list-style: none;
-    padding: 0;
-    margin: 0 calc(1.414rem * 1.414);
+  .coming-soon-section {
+    padding: 6rem 0;
+    background: var(--neutral-50);
+    border-top: 1px solid var(--neutral-100);
+    text-align: center;
+  }
+
+  .coming-soon-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--neutral-900);
+    margin-bottom: 1rem;
+  }
+
+  .coming-soon-text {
+    color: var(--neutral-500);
+    max-width: 500px;
+    margin: 0 auto 2rem;
+  }
+
+  .contact-form {
+    max-width: 400px;
+    margin: 0 auto;
     display: flex;
-    flex-direction: column;
-    gap: 1.414rem;
+    gap: 1rem;
+  }
+
+  .form-input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--neutral-300);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: border-color 0.2s ease;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  .form-button {
+    background: var(--accent);
+    color: var(--white);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .form-button:hover {
+    background: #065f46;
+  }
+
+  @media (max-width: 768px) {
+    .studio-card {
+      padding: 2rem;
+    }
+
+    .studio-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .studio-details {
+      grid-template-columns: 1fr;
+    }
+
+    .studio-actions {
+      flex-direction: column;
+    }
+
+    .action-button {
+      justify-content: center;
+    }
+
+    .contact-form {
+      flex-direction: column;
+    }
   }
 </style>

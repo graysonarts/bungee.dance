@@ -1,0 +1,22 @@
+---
+import "../styles/global.css";
+const { label } = Astro.props;
+---
+
+<div class="detail-item">
+  <slot />
+  <span class="detail-text">{label}</span>
+</div>
+
+<style>
+  .detail-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .detail-text {
+    color: var(--neutral-600);
+    font-size: 0.95rem;
+  }
+</style>
