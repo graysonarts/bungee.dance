@@ -1,0 +1,73 @@
+---
+import "../../styles/global.css";
+import SongEntry from "./SongEntry.astro";
+import { Music } from "@lucide/astro";
+const { songs } = Astro.props;
+---
+
+<section class="songs-section">
+  <ul class="songs-list" id="songsList">
+    {songs.map((song: any) => <SongEntry song={song} />)}
+  </ul>
+  <div class="empty-state" id="danceEmpty" style="display: none;">
+    <Music class="empty-icon" />
+    <h3 class="empty-title">No Dance Songs Yet</h3>
+    <p class="empty-text">
+      Dance choreography routines are coming soon. Check back later for new
+      content.
+    </p>
+  </div>
+</section>
+
+<style>
+  .songs-section {
+    padding: 4rem 0 7rem;
+  }
+
+  .songs-list {
+    list-style: none;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--neutral-500);
+  }
+
+  .empty-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 1.5rem;
+    color: var(--neutral-300);
+    stroke-width: 1;
+  }
+
+  .empty-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--neutral-700);
+    margin-bottom: 0.75rem;
+  }
+
+  .empty-text {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .coming-soon {
+    text-align: center;
+    padding: 4rem 0 0;
+    border-top: 1px solid var(--neutral-100);
+  }
+
+  .coming-soon-text {
+    color: var(--neutral-500);
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 768px) {
+    .songs-section {
+      padding: 3rem 0 5rem;
+    }
+  }
+</style>

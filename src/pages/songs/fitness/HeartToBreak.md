@@ -5,6 +5,9 @@ artist: "Kim Petras"
 spotify: https://open.spotify.com/track/1jFN0stMzLepoPxvPywGZj?si=e1f81058fdb040bf
 status: complete
 kind: warmup
+category: fitness
+tags:
+  - back
 ---
 
 - March to Chair 4x

@@ -1,0 +1,106 @@
+---
+import "../../styles/global.css";
+import SongTag from "./SongTag.astro";
+const { song } = Astro.props;
+---
+
+<li class="song-item" data-category={song.frontmatter.category}>
+  <a href={song.url} class="song-link">
+    <div class="song-header">
+      <div class="song-info">
+        <div class="song-title">{song.frontmatter.title}</div>
+        <div class="song-artist">by {song.frontmatter.artist}</div>
+      </div>
+      <div class="song-duration">{song.duration}</div>
+    </div>
+    <div class="song-tags">
+      <SongTag
+        tag={{
+          label: song.frontmatter.category,
+          type: song.frontmatter.category,
+        }}
+      />
+      {
+        song.frontmatter.tags?.map((tag: any) => (
+          <SongTag tag={{ label: tag, type: tag }} />
+        ))
+      }
+    </div>
+  </a>
+</li>
+
+<style>
+  .song-item {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--neutral-100);
+    transition: all 0.2s ease;
+  }
+
+  .song-item:last-child {
+    border-bottom: none;
+  }
+
+  .song-item:hover {
+    background: var(--neutral-100);
+    margin: 0 -2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .song-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    text-transform: none;
+  }
+
+  .song-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+  }
+
+  .song-info {
+    flex: 1;
+  }
+
+  .song-title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--neutral-900);
+    margin-bottom: 0.25rem;
+  }
+
+  .song-artist {
+    color: var(--neutral-500);
+    font-size: 0.95rem;
+  }
+
+  .song-duration {
+    color: var(--neutral-500);
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .song-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .song-item:hover {
+      margin: 0 -1.5rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    .song-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  }
+</style>

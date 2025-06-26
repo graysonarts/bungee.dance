@@ -1,76 +1,28 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Filter from "../components/songs/Filter.astro";
+import SongList from "../components/songs/SongList.astro";
 
 const fitnessSongs = Object.values(
   import.meta.glob("./songs/fitness/*.md", { eager: true })
 );
+
+const danceSongs = Object.values(
+  import.meta.glob("./songs/dance/*.md", { eager: true })
+);
+
+const songs = [...fitnessSongs, ...danceSongs];
 ---
 
 <Layout>
-  <div id="reference">
-    <p>
-      This is a reference for the songs that Grayson uses in his bungee classes.
-      It's mostly a reference for his students at this time, but will be
-      expanding to have other stuff too.
-    </p>
-    <article>
-      <h1>Fitness Songs</h1>
-      <ul>
-        {
-          fitnessSongs.map((song: any) => (
-            <li>
-              <a href={song.url}>{song.frontmatter.title}</a> by{" "}
-              {song.frontmatter.artist}
-            </li>
-          ))
-        }
-      </ul>
-    </article>
-
-    <article>
-      <h1>Dance Songs</h1>
-      <p>
-        <i>Coming soon</i>
-      </p>
-    </article>
-  </div>
+  <Hero
+    title="Choreography"
+    subtitle="A reference for the songs that Grayson uses in his bungee classes."
+  />
+  <Filter fitnessCount={fitnessSongs.length} danceCount={danceSongs.length} />
+  {songs.length > 0 && <SongList songs={songs} />}
+  {songs.length === 0 && <div>No songs found</div>}
 </Layout>
 
-<style>
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1.414rem;
-  }
-
-  ul li {
-    text-align: left;
-  }
-
-  #reference {
-    display: flex;
-    flex-direction: column;
-    gap: calc(1.414rem * 1.414);
-  }
-
-  #reference p {
-    max-width: 60ch;
-    margin: 0;
-    padding: 0;
-  }
-
-  #reference article {
-    display: flex;
-    flex-direction: column;
-    gap: calc(1rem / 1.414);
-  }
-
-  #reference article h1 {
-    font-size: calc(1.414rem * 1.414 * 1.414 * 1.414);
-    margin: 0;
-    padding: 0;
-  }
-</style>
+<style></style>

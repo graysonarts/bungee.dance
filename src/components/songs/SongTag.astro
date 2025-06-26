@@ -1,0 +1,47 @@
+---
+import "../../styles/global.css";
+const { tag } = Astro.props;
+---
+
+<span class={`tag ${tag.type}`}>{tag.label}</span>
+
+<style>
+  .tag {
+    background: var(--neutral-200);
+    color: var(--neutral-600);
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .tag.fitness {
+    background: var(--accent);
+    color: var(--white);
+  }
+
+  .tag.dance {
+    background: #7c3aed;
+    color: var(--white);
+  }
+
+  .tag.complete {
+    background: #059669;
+    color: var(--white);
+  }
+
+  .tag.draft {
+    background: #d97706;
+    color: var(--white);
+  }
+
+  .tag.front {
+    background: #dc2626;
+    color: var(--white);
+  }
+
+  .tag.back {
+    background: #1d4ed8;
+    color: var(--white);
+  }
+</style>
