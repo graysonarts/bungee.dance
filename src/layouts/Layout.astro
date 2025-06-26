@@ -7,31 +7,27 @@ import Header from "../components/Header.astro";
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="stylesheet" href="https://use.typekit.net/tqo5xdj.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>bungee.help - Choreography Repository</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
     <script
       defer
       data-domain="bungee.help"
       src="https://plausible.io/js/script.js"></script>
-    <title>bungee.help</title>
   </head>
   <body>
-    <Header />
-    <main>
-      <slot />
-    </main>
+    <div class="container">
+      <Header />
+      <main>
+        <slot />
+      </main>
+    </div>
   </body>
 </html>
-
-<style>
-  main {
-    padding: 1.414rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1.414rem;
-  }
-</style>

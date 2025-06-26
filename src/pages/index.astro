@@ -1,5 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Sections from "../components/Sections.astro";
+import Stats from "../components/Stats.astro";
+import Cta from "../components/Cta.astro";
+import Footer from "../components/Footer.astro";
 
 const fitnessSongs = Object.values(
   import.meta.glob("./songs/fitness/*.md", { eager: true })
@@ -11,65 +16,12 @@ const danceSongs = Object.values(
 ---
 
 <Layout>
-  <p>
-    bungee.help is a repository of choreography that <a
-      rel="author"
-      href="https://graysonarts.com/">Grayson</a
-    > uses in his bungee fitness classes. It's mostly a reference for his students
-    at this time, but will be expanding to have other stuff too.
-  </p>
-  <p>
-    Want to learn more about bungee fitness classes and in Seattle? Check out
-    <a href="https://www.newmoonmovementarts.com/classes/#BungeeFitness"
-      >New Moon Movement Arts</a
-    > where Grayson currently teaches.
-  </p>
-  <div class="stats">
-    <div class="stats-item">
-      <strong>{fitnessSongs.length}</strong><span>fitness songs</span>
-      <strong>{danceSongs.length}</strong><span>dance songs</span>
-    </div>
-  </div>
+  <Hero />
+  <Sections />
+  <Stats
+    fitnessSongCount={fitnessSongs.length}
+    danceSongCount={danceSongs.length}
+  />
+  <Cta />
+  <Footer />
 </Layout>
-
-<style>
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1.414rem;
-  }
-
-  ul li {
-    text-align: left;
-  }
-
-  .stats-item {
-    display: grid;
-    grid-template-columns: auto 1fr auto 1fr;
-    gap: calc(1rem / 1.414);
-    text-align: left;
-    align-items: end;
-  }
-
-  .stats-item strong {
-    font-weight: 900;
-    color: var(--pumpkin);
-    font-size: calc(1.414rem * 1.414 * 1.414);
-    border: 1px solid var(--pumpkin);
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    display: block;
-    text-align: center;
-  }
-
-  .stats-item span {
-    display: block;
-    font-size: 1.414rem;
-    font-weight: 300;
-    color: var(--polynesian-blue);
-    padding-bottom: 0.5rem;
-  }
-</style>

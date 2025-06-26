@@ -1,0 +1,17 @@
+---
+import "../styles/global.css";
+const { fitnessSongCount, danceSongCount } = Astro.props;
+---
+
+<section class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-number">{fitnessSongCount}</div>
+      <div class="stat-label">Fitness Songs</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">{danceSongCount}</div>
+      <div class="stat-label">Dance Songs</div>
+    </div>
+  </div>
+</section>
