@@ -12,6 +12,8 @@ duration: 3:02
 - Boxing Squat Punches <span class="count">x 8</span>
 - Fall back
 - March Forward lunge + March Back to chair <span class="count">x 4</span>
+- Side Lunges <span class="count">x 4</span>
+- Side Leans <span class="count">x 4</span>
 - (Chorus) Dive forward + cross lay back <span class="count">x 4</span>
 - Froggies <span class="count">x 8</span>
 - Side Lunge <span class="count">x 4</span>
